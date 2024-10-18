@@ -1,0 +1,60 @@
+<!-- Кастомный прелоадер (эффект загрузки страницы) | https://necodim.ru/tilda/preloader -->
+
+<div id="preloader"><span class="loader"></span></div>
+
+<script>
+document.body.style.overflow = 'hidden';
+const loader = () => {
+    document.body.style.overflow = '';
+    const preloader = document.getElementById('preloader');
+    const fadeout = setInterval(() => {
+        const opacity = getComputedStyle(preloader).opacity;
+        opacity > 0 ? preloader.style.opacity = opacity - 0.05 : (clearInterval(fadeout), preloader.remove());
+    }, 15);
+}
+setTimeout(() => loader(), 500);
+</script>
+
+<style>
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    opacity: 1;
+    background-color: #151515;
+    overflow: hidden;
+    cursor: progress;
+}
+.loader {
+    position: relative;
+    width: 55px;
+    height: 55px;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(#FFF 50px, transparent 0),
+                      linear-gradient(#FFF 50px, transparent 0),
+                      linear-gradient(#FFF 50px, transparent 0),
+                      linear-gradient(#FFF 50px, transparent 0),
+                      linear-gradient(#FFF 50px, transparent 0),
+                      linear-gradient(#FFF 50px, transparent 0);
+    background-size: 5px 40px;
+    background-position: 0px center, 10px center, 20px center, 30px center, 40px center, 50px center;
+    animation: spikeUp 1s linear infinite alternate;
+  }
+@keyframes spikeUp {
+  0% { background-size: 5px 40px}
+  16% { background-size: 5px 55px, 5px 40px, 5px 40px, 5px 40px, 5px 40px, 5px 40px}
+  33% { background-size: 5px 40px, 5px 55px, 5px 40px, 5px 40px, 5px 40px, 5px 40px}
+  50% { background-size: 5px 40px, 5px 40px, 5px 55px, 5px 40px, 5px 40px, 5px 40px}
+  66% { background-size: 5px 40px, 5px 40px, 5px 40px, 5px 55px, 5px 40px, 5px 40px}
+  83% { background-size: 5px 40px, 5px 40px, 5px 40px, 5px 40px, 5px 55px, 5px 40px}
+  100% { background-size: 5px 40px, 5px 40px, 5px 40px, 5px 40px, 5px 40px, 5px 55px}
+}
+      
+</style>
